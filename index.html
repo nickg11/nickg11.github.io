@@ -5,6 +5,18 @@
     <title>Basic Potion Calculator</title>
 </head>
 <body>
+    <style>
+      .calculator {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 0.1em solid black;
+    padding: 10px;
+}  
+    </style>
+    <div class="calculator">
     <h1>Potion Revenue Calculator</h1>
     <h2 id="Revenue">Revenue: </h2>
     <h2 id="Error">Error: No Error</h2>
@@ -31,6 +43,7 @@
         <br/>
         <button type="submit" name="submitButton">Calculate</button>
     </form>
+</div>
     <script>
         function getFormData(){
             event.preventDefault();
