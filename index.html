@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Basic Potion Calculator</title>
+</head>
+<body>
+    <h1>Potion Revenue Calculator</h1>
+    <h2 id="Revenue">Revenue: </h2>
+    <h2 id="Error">Error: No Error</h2>
+    <form id="form">
+        <label>
+            Wild Flower Cost
+            <input type="number" id="white">
+        </label>
+        <br/>
+        <label>
+            Shy Wild Flower Cost
+            <input type="number" id="green">
+        </label>
+        <br/>
+        <label>
+            Bright Wild Flower Cost
+            <input type="number" id="blue">
+        </label>
+        <br/>
+        <label>
+            Elemental HP Potion Cost
+            <input type="number" id="potion">
+        </label>
+        <br/>
+        <button type="submit" name="submitButton">Calculate</button>
+    </form>
+    <script>
+        function getFormData(){
+            event.preventDefault();
+            white = document.getElementById("white").value;
+            green = document.getElementById("green").value;
+            blue = document.getElementById("blue").value;
+            potion = document.getElementById("potion").value;
+            errorString = "";
+
+            if(!white){
+                errorString = "Error: You must provide a cost for the Wild Flowers on the market <br/>";
+            }
+            if(!green){
+                errorString += "Error: You must provide a cost for the Shy Wild Flowers on the market <br/>";
+            }
+            if(!blue){
+                errorString += "Error: You must provide a cost for the Bright Wild Flowers on the market <br/>";
+            }
+            if(!potion){
+                errorString += "Error: You must provide a cost for the Elemental HP Potions on the market <br/>";
+            }
+            if(errorString.length > 0){
+                errorArea.style.color = "red";
+                errorArea.innerHTML = errorString;
+            } else {
+                errorArea.style.color = "black";
+                errorArea.innerHTML = "Error: No Error";
+                calculateRevenue();
+            }
+        }
+        function calculateRevenue(){
+            netIncome = (potion* 3);
+            netIncome -= (white * 0.48);
+            netIncome -= (green * 2.4);
+            netIncome -= (blue * 0.6);
+            netIncome = Math.round(netIncome * 100) / 100;
+            if(netIncome > 0){
+                revenueArea.style.color = "green";
+                revenueArea.innerHTML = "Revenue: " + netIncome + " gold";
+            } else if (netIncome == 0){
+                revenueArea.style.color = "black";
+                revenueArea.innerHTML = "Revenue: " + netIncome + " gold";
+            } else {
+                revenueArea.style.color = "red";
+                revenueArea.innerHTML = "Revenue: " + netIncome + " gold";
+            }
+        }
+        let white = 0.0;
+        let green = 0.0;
+        let blue = 0.0;
+        let potion = 0.0;
+        let netIncome = 0.0;
+        let errorString = "";
+        const form = document.getElementById("form");
+        const errorArea = document.getElementById("Error");
+        const revenueArea = document.getElementById("Revenue");
+        form.addEventListener('submit', getFormData)
+    </script>
+</body>
+</html>
